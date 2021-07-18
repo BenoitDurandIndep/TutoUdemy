@@ -1,6 +1,22 @@
+import json
+from json.decoder import JSONDecodeError
+import os 
+from os import error
+
 liste_courses=[]
 choix = element = ""
 encore =True
+rep_save="D:/Formations/Python/TutoUdemy/Form_Python_DocString/data/"
+fic_save = rep_save+"liste_courses.json"
+
+try :
+	with open(fic_save,'a+',encoding='utf-8') as f:
+		f.seek(0)
+		liste_courses = json.load(f)
+except (IOError,JSONDecodeError) as e :
+	print("Exception catchée : ",e)
+	liste_courses=[]
+	pass
 
 while encore : 
 	print("""_______________________________
@@ -38,6 +54,12 @@ while encore :
 			liste_courses.clear()
 			print("La liste a été vidée de son contenu.")
 		elif choix=="5":
+			try :
+				with open(fic_save,'w+',encoding='utf-8') as f:
+					json.dump(liste_courses,f)
+			except error as e:
+				print(e)
+
 			encore = False
 			print("A bientôt !")
 		else:
