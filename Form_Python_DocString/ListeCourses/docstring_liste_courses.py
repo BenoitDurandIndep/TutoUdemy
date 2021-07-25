@@ -57,7 +57,7 @@ while encore :
 		try :
 			with open(fic_save,'w+',encoding='utf-8') as f:
 				json.dump(liste_courses,f)
-		except error as e:
+		except FileNotFoundError as e:
 			print(e)
 
 		encore = False
