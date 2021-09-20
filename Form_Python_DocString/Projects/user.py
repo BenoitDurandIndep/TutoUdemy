@@ -1,6 +1,8 @@
+from pathlib import Path
+from tinydb import TinyDB
 import faker
 import logging
-from pathlib import Path
+
 
 BASE_DIR=Path(__file__).resolve().parent
 
