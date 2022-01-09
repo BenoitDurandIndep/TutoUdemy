@@ -41,7 +41,30 @@ class Movie:
 			logging.warning(f"The movie {self.title} is already in the list.")
 			return False
 
+	def remove_from_movie(self)->bool:
+		list_movies=self._get_movies()
+		if self.title in list_movies:
+			list_movies.remove(self.title)
+			self._write_movies(list_movies)
+			return True
+		else:
+			logging.warning(f"The movie {self.title} is not in the list.")
+			return False
+
+	
+
+def get_movies():
+	with open(DATA_FILE,"r") as f:
+		movies_title = json.load(f)
+
+	movies=[Movie(movie_title) for movie_title in movies_title]
+	return(movies)
+
 if __name__=="__main__":
 	m=Movie("harry potter")
 	print(m.add_to_movies())
-	print(m)
+	print(m.remove_from_movie())
+	print(m.add_to_movies())
+	movies=get_movies()
+	print(movies[0])
+
