@@ -1,4 +1,4 @@
-# DocBlog
+# UDEMY PYTHON COMPLETE COURSE BY DOCSTRING
 This repository contains code for exercices from  https://www.udemy.com/course/formation-complete-python/
 ## Repository File Structure
     Form_Python_DocString
@@ -8,4 +8,5 @@ This repository contains code for exercices from  https://www.udemy.com/course/f
         ├── cineclub/       		 # Code for a video library
         ├── converter/       		 # Code for a currency converter
         ├── crm/       		         # Code for a small crm
+    ├── docstring_*.py       		 # Small exercices 
 ## No Data
