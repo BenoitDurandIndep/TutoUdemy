@@ -1,43 +1,68 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en-us">
 
 <head>
     <meta charset="UTF-8">
     <title>My contact list</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+        integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
 <body>
-    <h1>My contact list</h1>
-    {%for user in users %}
-    <h2>{{user.full_name}}</h2>
-    {% if user.address %}
-    <p>{{user.address}}</p>
-    {% endif %}
-    {% if user.phone_number %}
-    <p>{{user.phone_number}}</p>
-    {% endif %}
+    <div class="navbar">
+        <h1 class="text-white">My contact list</h1>
+    </div>
+    <div class="container">
+        <div class="row g-5">
+            {%for user in users %}
+            <div class="col-md-6 col-lg-4">
+                <div class="card">
 
-    <form method="POST" action="{% url 'delete-contact' %}">
-        {% csrf_token %}
-        <input type="hidden" name="first_name" value="{{user.first_name}}">
-        <input type="hidden" name="last_name" value="{{user.last_name}}">
-        <button type="submit">Delete</button>
-    </form>
-    {% endfor %}
+                    <div class="card-body">
+                        <h2 class="card-title">{{user.full_name}}</h2>
+                        <p class="card-text">{% if user.address %}
+                        <p>{{user.address}} </p>{% endif %}
+                        {% if user.phone_number %} <p>{{user.phone_number}}</p> {% endif %}</p>
+                        <form method="POST" action="{% url 'delete-contact' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="first_name" value="{{user.first_name}}">
+                            <input type="hidden" name="last_name" value="{{user.last_name}}">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="row mt-5">
+            <form method="POST" action="{% url 'add-contact' %}">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="first_name" class="form-label">First name</label>
+                    <input type="text" id="first_name" name="first_name" class="form-conttrol">
+                </div>
+                <div class="mb-3">
+                    <label for="last_name" class="form-label">Last name</label>
+                    <input type="text" id="last_name" name="last_name" class="form-conttrol">
+                </div>
+                <div class="mb-3">
+                    <label for="address" class="form-label">Address</label>
+                    <textarea name="address" id="address" rows="3" class="form-conttrol"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="phone" class="form-label">Phone number</label>
+                    <input type="text" id="phone" name="phone" class="form-conttrol">
+                </div>
+                <button type="submit" class="btn btn-primary">Add</button>
 
-    <form method="POST" action="{% url 'add-contact' %}">
-        {% csrf_token %}
-        <label for="first_name">First name</label>
-        <input type="text" id="first_name" name="first_name">
-        <label for="last_name">Last name</label>
-        <input type="text" id="last_name" name="last_name">
-        <label for="address">Address</label>
-        <textarea name="address" id="address" rows="3"></textarea>
-        <label for="phone">Phone number</label>
-        <input type="text" id="phone" name="phone">
-        <button type="submit">Add</button>
+            </form>
+        </div>
+    </div>
 
-    </form>
+
+
 </body>
 
 </html>
