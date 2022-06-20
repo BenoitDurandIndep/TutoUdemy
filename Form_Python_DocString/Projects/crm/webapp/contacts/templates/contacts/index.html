@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+    <title>My contact list</title>
+</head>
+
+<body>
+    <h1>My contact list</h1>
+    {%for user in users %}
+    <h2>{{user.full_name}}</h2>
+    {% if user.address %}
+    <p>{{user.address}}</p>
+    {% endif %}
+    {% if user.phone_number %}
+    <p>{{user.phone_number}}</p>
+    {% endif %}
+
+    <form method="POST" action="{% url 'delete-contact' %}">
+        {% csrf_token %}
+        <input type="hidden" name="first_name" value="{{user.first_name}}">
+        <input type="hidden" name="last_name" value="{{user.last_name}}">
+        <button type="submit">Delete</button>
+    </form>
+    {% endfor %}
+
+    <form method="POST" action="{% url 'add-contact' %}">
+        {% csrf_token %}
+        <label for="first_name">First name</label>
+        <input type="text" id="first_name" name="first_name">
+        <label for="last_name">Last name</label>
+        <input type="text" id="last_name" name="last_name">
+        <label for="address">Address</label>
+        <textarea name="address" id="address" rows="3"></textarea>
+        <label for="phone">Phone number</label>
+        <input type="text" id="phone" name="phone">
+        <button type="submit">Add</button>
+
+    </form>
+</body>
+
+</html>

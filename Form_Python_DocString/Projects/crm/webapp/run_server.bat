@@ -1,0 +1,1 @@
+C:\Formations\UdemyPythonCompleteCourse\.env\Scripts\Python.exe C:\Formations\UdemyPythonCompleteCourse\Form_Python_DocString\Projects\crm\webapp\manage.py runserver

@@ -73,15 +73,21 @@ def get_all_users():
 
 
 if __name__ == "__main__":
-    from faker import Faker
-    fake = Faker()
-    for _ in range(10):
-        user = User(first_name=fake.first_name(),
+#    get_all_users()
+    """     from faker import Faker
+        fake = Faker()
+        for _ in range(10):
+            user = User(first_name=fake.first_name(),
                     last_name=fake.last_name(),
                     phone_number=fake.phone_number(),
                     address=fake.address()
                     )
+            print(user)
+            print("-"*10)
+            user.save()
+            print(user.db_instance)
+            #user.delete()
+        print("$"*10)
+    """    
+    for user in get_all_users():
         print(user)
-        print("-"*10)
-        print(user.db_instance)
-        user.delete()
